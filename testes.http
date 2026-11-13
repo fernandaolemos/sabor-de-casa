@@ -1,29 +1,74 @@
-### Listar categorias
-GET http://localhost:3000/api/categorias
+@baseUrl = http://localhost:3000/api
 
-### Criar categoria
-POST http://localhost:3000/api/categorias
+# =========================================================
+# CATEGORIAS
+# =========================================================
+
+### 1. Listar categorias
+GET {{baseUrl}}/categorias
+
+### 2. Criar categoria
+# @name criarCategoria
+POST {{baseUrl}}/categorias
 Content-Type: application/json
 
 { "nome": "Carnes", "descricao": "Pratos com carne" }
 
-### Criar com nome repetido (deve dar erro)
-POST http://localhost:3000/api/categorias
+### 3. Criar categoria com nome repetido (deve dar erro 409)
+POST {{baseUrl}}/categorias
 Content-Type: application/json
 
 { "nome": "carnes" }
 
-### Criar sem nome (deve dar erro)
-POST http://localhost:3000/api/categorias
+### 4. Criar categoria sem nome (deve dar erro 400)
+POST {{baseUrl}}/categorias
 Content-Type: application/json
 
 { "nome": "" }
 
-### Editar categoria 1
-PUT http://localhost:3000/api/categorias/1
+### 5. Editar categoria
+PUT {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}
 Content-Type: application/json
 
 { "nome": "Carnes e Aves", "descricao": "Carnes vermelhas e frango" }
 
-### Excluir categoria 1
-DELETE http://localhost:3000/api/categorias/1
+# =========================================================
+# PRATOS
+# =========================================================
+
+### 6. Criar prato na categoria
+# @name criarPrato
+POST {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}/pratos
+Content-Type: application/json
+
+{ "nome": "Frango grelhado", "descricao": "Com arroz e salada", "preco": 18.5 }
+
+### 7. Criar prato com preco zero (deve dar erro 400)
+POST {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}/pratos
+Content-Type: application/json
+
+{ "nome": "Bife acebolado", "preco": 0 }
+
+### 8. Criar prato sem nome (deve dar erro 400)
+POST {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}/pratos
+Content-Type: application/json
+
+{ "nome": "", "preco": 20 }
+
+### 9. Listar pratos da categoria
+GET {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}/pratos
+
+### 10. Editar prato
+PUT {{baseUrl}}/pratos/{{criarPrato.response.body.$.id}}
+Content-Type: application/json
+
+{ "nome": "Frango grelhado", "descricao": "Com arroz, feijao e salada", "preco": 19.9, "disponivel": false }
+
+### 11. Excluir categoria que ainda tem pratos (deve dar erro 409)
+DELETE {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}
+
+### 12. Excluir prato
+DELETE {{baseUrl}}/pratos/{{criarPrato.response.body.$.id}}
+
+### 13. Excluir categoria (agora sem pratos)
+DELETE {{baseUrl}}/categorias/{{criarCategoria.response.body.$.id}}

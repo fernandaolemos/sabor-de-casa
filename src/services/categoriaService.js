@@ -1,8 +1,9 @@
 const AppError = require('../errors/AppError');
 const categoriaRepository = require('../repositories/categoriaRepository');
+const { ehIdValido, textoPreenchido } = require('./validacoes');
 
 function validarDados({ nome }) {
-  if (!nome || !nome.trim()) {
+  if (!textoPreenchido(nome)) {
     throw new AppError('O nome da categoria é obrigatório.');
   }
 }
@@ -22,7 +23,7 @@ async function garantirNomeUnico(nome, idAtual) {
 }
 
 async function buscarOuFalhar(id) {
-  const categoria = Number.isInteger(Number(id))
+  const categoria = ehIdValido(id)
     ? await categoriaRepository.buscarPorId(id)
     : null;
   if (!categoria) {
