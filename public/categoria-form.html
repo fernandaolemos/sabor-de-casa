@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nova categoria | Sabor de Casa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="index.html">
+      <span class="marca__icone" aria-hidden="true">🍱</span>
+      <span>Sabor de Casa</span>
+    </a>
+    <span class="topo__subtitulo">Cardápio digital</span>
+  </header>
+
+  <main class="conteudo conteudo--estreito">
+    <a class="voltar" href="index.html">← Voltar para categorias</a>
+    <h1 id="titulo-formulario">Nova categoria</h1>
+
+    <div id="mensagem" class="mensagem" role="alert" hidden></div>
+
+    <form id="formulario-categoria" class="cartao formulario" novalidate>
+      <div class="campo">
+        <label for="nome">Nome da categoria <span class="obrigatorio">*</span></label>
+        <input id="nome" name="nome" type="text" maxlength="100" placeholder="Ex.: Carnes" autocomplete="off">
+        <small id="erro-nome" class="erro-campo"></small>
+      </div>
+
+      <div class="campo">
+        <label for="descricao">Descrição</label>
+        <textarea id="descricao" name="descricao" rows="3" placeholder="Ex.: Pratos com carne vermelha e frango"></textarea>
+      </div>
+
+      <div class="formulario__acoes">
+        <button id="botao-salvar" class="botao botao--primario" type="submit">Salvar</button>
+        <a class="botao botao--secundario" href="index.html">Cancelar</a>
+      </div>
+      <p class="legenda"><span class="obrigatorio">*</span> Campo obrigatório</p>
+    </form>
+  </main>
+
+  <script type="module" src="js/categoria-form.js"></script>
+</body>
+</html>

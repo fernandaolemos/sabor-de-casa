@@ -2,9 +2,48 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Sabor de Casa</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorias | Sabor de Casa</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <h1>Sabor de Casa - Cardápio</h1>
+  <header class="topo">
+    <a class="marca" href="index.html">
+      <span class="marca__icone" aria-hidden="true">🍱</span>
+      <span>Sabor de Casa</span>
+    </a>
+    <span class="topo__subtitulo">Cardápio digital</span>
+  </header>
+
+  <main class="conteudo">
+    <div class="cabecalho-pagina">
+      <div>
+        <h1>Categorias do cardápio</h1>
+        <p class="texto-apoio">Organize os pratos por categoria e mantenha o cardápio sempre atualizado.</p>
+      </div>
+      <a class="botao botao--primario" href="categoria-form.html">+ Nova categoria</a>
+    </div>
+
+    <div id="mensagem" class="mensagem" role="alert" hidden></div>
+
+    <section class="cartao">
+      <table id="tabela-categorias" class="tabela" hidden>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Pratos</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-categorias"></tbody>
+      </table>
+      <p id="estado-vazio" class="estado-vazio" hidden>
+        Nenhuma categoria cadastrada ainda. Clique em <strong>+ Nova categoria</strong> para começar.
+      </p>
+    </section>
+  </main>
+
+  <script type="module" src="js/categorias.js"></script>
 </body>
 </html>

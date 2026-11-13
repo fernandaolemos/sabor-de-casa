@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pratos | Sabor de Casa</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topo">
+    <a class="marca" href="index.html">
+      <span class="marca__icone" aria-hidden="true">🍱</span>
+      <span>Sabor de Casa</span>
+    </a>
+    <span class="topo__subtitulo">Cardápio digital</span>
+  </header>
+
+  <main class="conteudo">
+    <a class="voltar" href="index.html">← Voltar para categorias</a>
+    <div class="cabecalho-pagina">
+      <div>
+        <p class="sobretitulo">Pratos da categoria</p>
+        <h1 id="nome-categoria">Carregando...</h1>
+      </div>
+    </div>
+
+    <div id="mensagem" class="mensagem" role="alert" hidden></div>
+
+    <div class="grade">
+      <form id="formulario-prato" class="cartao formulario" novalidate>
+        <h2 id="titulo-formulario">Novo prato</h2>
+
+        <div class="campo">
+          <label for="nome">Nome do prato <span class="obrigatorio">*</span></label>
+          <input id="nome" name="nome" type="text" maxlength="100" placeholder="Ex.: Frango grelhado" autocomplete="off">
+          <small id="erro-nome" class="erro-campo"></small>
+        </div>
+
+        <div class="campo">
+          <label for="descricao">Descrição</label>
+          <textarea id="descricao" name="descricao" rows="2" placeholder="Ex.: Com arroz, feijão e salada"></textarea>
+        </div>
+
+        <div class="campo">
+          <label for="preco">Preço (R$) <span class="obrigatorio">*</span></label>
+          <input id="preco" name="preco" type="number" step="0.01" placeholder="Ex.: 18.50" inputmode="decimal">
+          <small id="erro-preco" class="erro-campo"></small>
+        </div>
+
+        <label class="campo-checkbox">
+          <input id="disponivel" name="disponivel" type="checkbox" checked>
+          Disponível no cardápio
+        </label>
+
+        <div class="formulario__acoes">
+          <button id="botao-salvar" class="botao botao--primario" type="submit">Salvar prato</button>
+          <button id="botao-cancelar" class="botao botao--secundario" type="button" hidden>Cancelar edição</button>
+        </div>
+        <p class="legenda"><span class="obrigatorio">*</span> Campo obrigatório</p>
+      </form>
+
+      <section class="cartao">
+        <table id="tabela-pratos" class="tabela" hidden>
+          <thead>
+            <tr>
+              <th>Prato</th>
+              <th>Descrição</th>
+              <th>Preço</th>
+              <th>Situação</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="lista-pratos"></tbody>
+        </table>
+        <p id="estado-vazio" class="estado-vazio" hidden>
+          Nenhum prato nesta categoria ainda. Use o formulário ao lado para cadastrar o primeiro.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="js/pratos.js"></script>
+</body>
+</html>
