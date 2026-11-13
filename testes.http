@@ -1,0 +1,29 @@
+### Listar categorias
+GET http://localhost:3000/api/categorias
+
+### Criar categoria
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{ "nome": "Carnes", "descricao": "Pratos com carne" }
+
+### Criar com nome repetido (deve dar erro)
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{ "nome": "carnes" }
+
+### Criar sem nome (deve dar erro)
+POST http://localhost:3000/api/categorias
+Content-Type: application/json
+
+{ "nome": "" }
+
+### Editar categoria 1
+PUT http://localhost:3000/api/categorias/1
+Content-Type: application/json
+
+{ "nome": "Carnes e Aves", "descricao": "Carnes vermelhas e frango" }
+
+### Excluir categoria 1
+DELETE http://localhost:3000/api/categorias/1

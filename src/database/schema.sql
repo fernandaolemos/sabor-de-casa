@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS categorias (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL UNIQUE,
+  descricao TEXT
+);
+
+CREATE TABLE IF NOT EXISTS pratos (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  descricao TEXT,
+  preco NUMERIC(10, 2) NOT NULL CHECK (preco > 0),
+  disponivel BOOLEAN NOT NULL DEFAULT TRUE,
+  categoria_id INTEGER NOT NULL REFERENCES categorias(id)
+);
